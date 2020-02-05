@@ -10,5 +10,5 @@ package modelo;
  * @author alu2019265
  */
 public class Incidencia {
-    
+
 }
