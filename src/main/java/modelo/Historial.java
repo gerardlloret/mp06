@@ -1,30 +1,68 @@
 
 package modelo;
 
+import enums.Event;
 import java.util.Date;
 
 
 public class Historial {
     
-    private String username;
+    private Empleado empleado;
     private Date fechaEvento;
+    private Event evento;
 
     /**
-     * Get the value of username
+     * Get the value of evento
      *
-     * @return the value of username
+     * @return the value of evento
      */
-    public String getUsername() {
-        return username;
+    public Event getEvento() {
+        return evento;
     }
 
     /**
-     * Set the value of username
+     * Set the value of evento
      *
-     * @param username new value of username
+     * @param evento new value of evento
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEvento(Event evento) {
+        this.evento = evento;
+    }
+
+    /**
+     * Get the value of fechaEvento
+     *
+     * @return the value of fechaEvento
+     */
+    public Date getFechaEvento() {
+        return fechaEvento;
+    }
+
+    /**
+     * Set the value of fechaEvento
+     *
+     * @param fechaEvento new value of fechaEvento
+     */
+    public void setFechaEvento(Date fechaEvento) {
+        this.fechaEvento = fechaEvento;
+    }
+    
+    /**
+     * Get the value of empleado
+     *
+     * @return the value of empleado
+     */
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    /**
+     * Set the value of empleado
+     *
+     * @param empleado new value of empleado
+     */
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
 }
