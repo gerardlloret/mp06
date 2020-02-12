@@ -5,10 +5,11 @@
  */
 package modelo;
 
-/**
- *
- * @author alu2019265
- */
+import java.util.Date;
+
+
 public class Incidencia {
 
+    private Date fecha;
+    
 }
