@@ -1,14 +1,15 @@
 
 package vista;
 
+import persistencia.DAO;
 
-/**
- *
- * @author alu2016489
- */
 public class Main {
     
+    private static DAO gestor;
+    
     public static void main(String[] args) {
+        gestor = new DAO();
+            System.out.println("Establecida la sesión con couchDB");
         
     }
 }
