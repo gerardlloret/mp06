@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //Las propiedades no pueden ser nulas y no estaran en el json los campos vacios.
-//@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Empleado {
     @JsonProperty("_id") private String id;
     @JsonProperty("_rev") private String rev;
-    @JsonProperty("_username") private String username;
-    @JsonProperty("_password") private String password;
-    @JsonProperty("_nombreCompleto") private String nombreCompleto;
-    @JsonProperty("_telefono") private String telefono;
+    private String username;
+    private String password;
+    private String nombreCompleto;
+    private String telefono;
 
-    public Empleado(String id, String rev, String username, String password, String nombreCompleto, String telefono) {
+    /*public Empleado(String id, String rev, String username, String password, String nombreCompleto, String telefono) {
         this.id = id;
         this.rev = rev;
         this.username = username;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
-    }
-
+    }*/
+    
     public String getId() {
         return id;
     }
