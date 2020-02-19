@@ -30,11 +30,16 @@ public class DAO {
             
             db.createDatabaseIfNotExists();  
             //--------------- Creating Document----------------------------//  
-            DesignDocument dd = new DesignDocument("light");  
-            db.create(dd);  
+            //DesignDocument dd = new DesignDocument("light");  
+            //db.create(dd);
         } catch (MalformedURLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }
+    
+    public void crearBDD(){
+        
+    }
+    
     
 }
