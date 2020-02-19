@@ -7,14 +7,17 @@ package modelo;
 
 import enums.Type;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Incidencia {
 
-    private Date fecha;
-    private Type tipo;
-    private Empleado origen;
-    private Empleado destino;
+    @JsonProperty("_fecha") private Date fecha;
+    @JsonProperty("_tipo") private Type tipo;
+    @JsonProperty("_origen") private Empleado origen;
+    @JsonProperty("_destino") private Empleado destino;
 
     public Incidencia(Date fecha, Type tipo, Empleado origen, Empleado destino) {
         this.fecha = fecha;

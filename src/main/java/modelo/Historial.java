@@ -3,13 +3,16 @@ package modelo;
 
 import enums.Event;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Historial {
     
-    private Empleado empleado;
-    private Date fechaEvento;
-    private Event evento;
+    @JsonProperty("_empleado") private Empleado empleado;
+    @JsonProperty("_fechaEvento") private Date fechaEvento;
+    @JsonProperty("_evento") private Event evento;
 
     /**
      * Get the value of evento

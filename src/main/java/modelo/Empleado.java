@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Empleado {
     @JsonProperty("_username") private String username;
-    @JsonProperty("_pass") private String password;
-    @JsonProperty("_name") private String nombreCompleto;
-    @JsonProperty("_tlf") private String telefono;
+    @JsonProperty("_password") private String password;
+    @JsonProperty("_nombreCompleto") private String nombreCompleto;
+    @JsonProperty("_telefono") private String telefono;
 
     public Empleado(String username, String password, String nombreCompleto, String telefono) {
         this.username = username;
