@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Incidencia {
 
+    @JsonProperty("_id") private String identity;
+    @JsonProperty("_rev") private String version;
     @JsonProperty("_fecha") private Date fecha;
     @JsonProperty("_tipo") private Type tipo;
     @JsonProperty("_origen") private Empleado origen;

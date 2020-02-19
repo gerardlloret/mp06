@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Historial {
     
+    @JsonProperty("_id") private String identity;
+    @JsonProperty("_rev") private String version;
     @JsonProperty("_empleado") private Empleado empleado;
     @JsonProperty("_fechaEvento") private Date fechaEvento;
     @JsonProperty("_evento") private Evento evento;
