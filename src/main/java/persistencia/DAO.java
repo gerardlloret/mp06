@@ -22,7 +22,7 @@ public class DAO {
     //Iniciar sesion
     public DAO() {
         //192.168.21.105
-        HttpClient httpClient;  
+        HttpClient httpClient;
         try {
             httpClient = new StdHttpClient.Builder().url("http://192.168.21.105:5984").username("root").password("root").build();
             CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);  
@@ -38,11 +38,6 @@ public class DAO {
         } catch (MalformedURLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
-    }
-    
-    public void crearBDD(){
-        
-    }
-    
+    }  
     
 }
