@@ -1,7 +1,7 @@
 
 package modelo;
 
-import enums.Event;
+import enums.Evento;
 import java.util.Date;
 
 
@@ -9,14 +9,14 @@ public class Historial {
     
     private Empleado empleado;
     private Date fechaEvento;
-    private Event evento;
+    private Evento evento;
 
     /**
      * Get the value of evento
      *
      * @return the value of evento
      */
-    public Event getEvento() {
+    public Evento getEvento() {
         return evento;
     }
 
@@ -25,7 +25,7 @@ public class Historial {
      *
      * @param evento new value of evento
      */
-    public void setEvento(Event evento) {
+    public void setEvento(Evento evento) {
         this.evento = evento;
     }
 

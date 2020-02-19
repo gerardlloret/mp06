@@ -1,6 +1,6 @@
 
 package enums;
 
-public enum Event {
+public enum Evento {
     I, C, U;
 }
