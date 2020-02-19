@@ -31,7 +31,11 @@ public class DAO {
             //db.createDatabaseIfNotExists();  
             CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
             //--------------- Creating Document----------------------------//  
-            Empleado e = new Empleado("1","1", "gerard", "g", "glloret", "123");
+            Empleado e = new Empleado();
+            e.setUsername("gerard");
+            e.setPassword("pass");
+            e.setNombreCompleto("glloret");
+            e.setTelefono("1223");
             //DesignDocument dd = new DesignDocument("light");  
             
             db.create(e);
