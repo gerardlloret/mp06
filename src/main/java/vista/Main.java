@@ -33,6 +33,16 @@ public class Main {
                                         break;
                                     case 5:
                                         break;
+                                    case 6:                                        
+                                        break;
+                                    case 7:
+                                        break;
+                                    case 8:
+                                        break;
+                                    case 9:
+                                        break;
+                                    case 10:
+                                        break;
                                     default:
                                         if(opcion2!=0){
                                             System.out.println("El numero " + opcion2 + " no es una opcion valida.");
@@ -57,8 +67,13 @@ public class Main {
         System.out.println("1. Crear nuevo empleado");
         System.out.println("2. Modificar empleado");
         System.out.println("3. Borrar empleado");
-        System.out.println("4. Crear incidencia");
-        System.out.println("5. Ranking empleados");
+        System.out.println("4. Ver incidencia por id");
+        System.out.println("5. Ver todas las incidencias");
+        System.out.println("6. Crear incidencia");
+        System.out.println("7. Ver incidencia por usuario");
+        System.out.println("8. Insertar evento");
+        System.out.println("9. Ver la fecha de inicio de sesion");
+        System.out.println("10. Ver ranking de empleados");
         System.out.println("0. Salir");
     }
     
@@ -72,5 +87,5 @@ public class Main {
     public static boolean login(){
         return true;
     }
-    
+        
 }
