@@ -1,7 +1,7 @@
 
 package modelo;
 
-import enums.Event;
+import enums.Evento;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,14 +12,14 @@ public class Historial {
     
     @JsonProperty("_empleado") private Empleado empleado;
     @JsonProperty("_fechaEvento") private Date fechaEvento;
-    @JsonProperty("_evento") private Event evento;
+    @JsonProperty("_evento") private Evento evento;
 
     /**
      * Get the value of evento
      *
      * @return the value of evento
      */
-    public Event getEvento() {
+    public Evento getEvento() {
         return evento;
     }
 
@@ -28,7 +28,7 @@ public class Historial {
      *
      * @param evento new value of evento
      */
-    public void setEvento(Event evento) {
+    public void setEvento(Evento evento) {
         this.evento = evento;
     }
 
