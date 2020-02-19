@@ -8,6 +8,7 @@ package persistencia;
 import java.net.MalformedURLException;  
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Empleado;
 import org.ektorp.CouchDbConnector;  
 import org.ektorp.CouchDbInstance;  
 import org.ektorp.http.HttpClient;  
@@ -26,12 +27,14 @@ public class DAO {
             httpClient = new StdHttpClient.Builder().url("http://192.168.21.105:5984").username("root").password("root").build();
             CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);  
             //--------------- Creating database----------------------------//  
-            CouchDbConnector db = new StdCouchDbConnector("javatpoint", dbInstance);  
-            
-            db.createDatabaseIfNotExists();  
+            //CouchDbConnector db = new StdCouchDbConnector("javatpoint", dbInstance);             
+            //db.createDatabaseIfNotExists();  
+            CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
             //--------------- Creating Document----------------------------//  
+            Empleado e = new Empleado("1","1", "gerard", "g", "glloret", "123");
             //DesignDocument dd = new DesignDocument("light");  
-            //db.create(dd);
+            
+            db.create(e);
         } catch (MalformedURLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
