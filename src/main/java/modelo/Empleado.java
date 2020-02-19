@@ -1,19 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-/**
- *
- * @author alu2019265
- */
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+//Las propiedades no pueden ser nulas y no estaran en el json los campos vacios.
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Empleado {
-    private String username;
-    private String password;
-    private String nombreCompleto;
-    private String telefono;
+    @JsonProperty("_username") private String username;
+    @JsonProperty("_pass") private String password;
+    @JsonProperty("_name") private String nombreCompleto;
+    @JsonProperty("_tlf") private String telefono;
 
     public Empleado(String username, String password, String nombreCompleto, String telefono) {
         this.username = username;
