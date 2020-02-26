@@ -23,7 +23,8 @@ public class Main {
                             showMenu();
                             do{
                                 switch(opcion2){
-                                    case 1:                                        
+                                    case 1:
+                                        
                                         break;
                                     case 2:
                                         break;
@@ -85,7 +86,12 @@ public class Main {
     
     //NO ESTA ACABADA
     public static boolean login(){
-        return true;
+        String nombre = InputAsker.askString("Introduce tu nombre");
+        String password = InputAsker.askString("Introduce tu password");
+        if(gestor.loginEmpleado(nombre, password)){
+            return true;
+        }
+        return false;
     }
         
 }

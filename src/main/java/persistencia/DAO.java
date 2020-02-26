@@ -23,6 +23,8 @@ import org.ektorp.support.DesignDocument;
 
 public class DAO implements DAOInterface {
     
+    CouchDbConnector db;
+    
     //Iniciar sesion
     public DAO() {
         //192.168.21.105
@@ -33,16 +35,17 @@ public class DAO implements DAOInterface {
             //--------------- Creating database----------------------------//  
             //CouchDbConnector db = new StdCouchDbConnector("javatpoint", dbInstance);             
             //db.createDatabaseIfNotExists();  
-            CouchDbConnector db = dbInstance.createConnector("my_first_database", true);
+            db = dbInstance.createConnector("my_first_database", true);
             //--------------- Creating Document----------------------------//  
-            Empleado e = new Empleado();
+            /*Empleado e = new Empleado();
             e.setUsername("gerard");
             e.setPassword("pass");
             e.setNombreCompleto("glloret");
             e.setTelefono("1223");
+            e.setId("gerard");
             //DesignDocument dd = new DesignDocument("light");  
             
-            db.create(e);
+            db.create(e);*/
         } catch (MalformedURLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
@@ -50,12 +53,17 @@ public class DAO implements DAOInterface {
 
     @Override
     public void insertEmpleado(Empleado e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        db.create(e);
     }
 
     @Override
     public boolean loginEmpleado(String user, String pass) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Empleado empleado = db.get(Empleado.class, user);
+        if(empleado.getUsername().equalsIgnoreCase(user) && empleado.getPassword().equalsIgnoreCase(pass)){
+            return true;
+        }
+        return false;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
