@@ -3,8 +3,8 @@ package excepcion;
 public class Excepcion extends Exception{
     private int error = 0;
     //Declaramos estas variables para que al momento de lanzar el error sea mucho mas intuitivo
-    public static final int nombreExcede = 1;
-    public static final int dniExcede = 2;
+    public static final int loginIncorrecto = 1;
+    /*public static final int dniExcede = 2;
     public static final int dniYaExiste = 3;
     public static final int matriculaExcede = 4;
     public static final int claveExcede = 5;
@@ -17,7 +17,7 @@ public class Excepcion extends Exception{
     public static final int telefonoExcede = 12;
     public static final int cpTipo = 13;
     public static final int ultimoAdmin = 14;
-    public static final int matriculaExiste = 15;
+    public static final int matriculaExiste = 15;*/
     
     public Excepcion(int error) {
         super();
@@ -28,8 +28,8 @@ public class Excepcion extends Exception{
     public String getMessage() {
         switch(error){
             case 1:
-                return "< El nombre excede los caracteres permitidos >";
-            case 2:
+                return "< El nombre o el password son incorrectos >";
+            /*case 2:
                 return "< El dni tiene que tener 8 numeros >";
             case 3:
                 return "< Este dni ya se ha dado de alta>";
@@ -56,7 +56,7 @@ public class Excepcion extends Exception{
             case 14:
                 return "< No puedes borrar el ultimo administrador >";
             case 15:
-                return "< Esta matricula ya existe >";
+                return "< Esta matricula ya existe >";*/
         }
         return super.getMessage(); 
     }            

@@ -1,5 +1,6 @@
 package vista;
 
+import excepcion.Excepcion;
 import persistencia.DAO;
 
 public class Main {
@@ -13,50 +14,54 @@ public class Main {
             int opcion;
             int opcion2;
             do{
-            //Enseñamos el menu y pedimos una opcion
-            showMenuLogin();
-            opcion = InputAsker.askInt("Escoge una opcion");
-                switch(opcion){
-                    case 1:
-                        if(login()){                          
-                            opcion2 = InputAsker.askInt("Escoge una opcion");
-                            showMenu();
-                            do{
-                                switch(opcion2){
-                                    case 1:
-                                        
-                                        break;
-                                    case 2:
-                                        break;
-                                    case 3:
-                                        break;
-                                    case 4:
-                                        break;
-                                    case 5:
-                                        break;
-                                    case 6:                                        
-                                        break;
-                                    case 7:
-                                        break;
-                                    case 8:
-                                        break;
-                                    case 9:
-                                        break;
-                                    case 10:
-                                        break;
-                                    default:
-                                        if(opcion2!=0){
-                                            System.out.println("El numero " + opcion2 + " no es una opcion valida.");
-                                        }
-                                }
-                            }while (opcion2 != 0);
-                        }
-                        break;
-                    default:
-                        if(opcion!=0){
-                            System.out.println("El numero " + opcion + " no es una opcion valida.");
-                        }
-                }     
+                //Enseñamos el menu y pedimos una opcion
+                showMenuLogin();
+                opcion = InputAsker.askInt("Escoge una opcion");
+                try{
+                    switch(opcion){
+                        case 1:
+                            if(login()){                          
+                                opcion2 = InputAsker.askInt("Escoge una opcion");
+                                showMenu();
+                                do{
+                                    switch(opcion2){
+                                        case 1:
+
+                                            break;
+                                        case 2:
+                                            break;
+                                        case 3:
+                                            break;
+                                        case 4:
+                                            break;
+                                        case 5:
+                                            break;
+                                        case 6:                                        
+                                            break;
+                                        case 7:
+                                            break;
+                                        case 8:
+                                            break;
+                                        case 9:
+                                            break;
+                                        case 10:
+                                            break;
+                                        default:
+                                            if(opcion2!=0){
+                                                System.out.println("El numero " + opcion2 + " no es una opcion valida.");
+                                            }
+                                    }
+                                }while (opcion2 != 0);
+                            }
+                            break;
+                        default:
+                            if(opcion!=0){
+                                System.out.println("El numero " + opcion + " no es una opcion valida.");
+                            }
+                    }     
+                }catch (Excepcion ex) {
+                        System.out.println(ex.getMessage());
+                }            
             }while (opcion != 0);
             //https://helun.github.io/Ektorp/reference_documentation.html
             //https://www.programcreek.com/java-api-examples/?class=org.ektorp.CouchDbConnector&method=create
@@ -85,7 +90,7 @@ public class Main {
     }
     
     //NO ESTA ACABADA
-    public static boolean login(){
+    public static boolean login() throws Excepcion{
         String nombre = InputAsker.askString("Introduce tu nombre");
         String password = InputAsker.askString("Introduce tu password");
         if(gestor.loginEmpleado(nombre, password)){

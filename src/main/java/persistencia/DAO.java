@@ -6,6 +6,7 @@
 package persistencia;
 
 import enums.Evento;
+import excepcion.Excepcion;
 import interfaz.DAOInterface;
 import java.net.MalformedURLException;  
 import java.util.List;
@@ -58,12 +59,16 @@ public class DAO implements DAOInterface {
 
     @Override
     public boolean loginEmpleado(String user, String pass) {
-        Empleado empleado = db.get(Empleado.class, user);
-        if(empleado.getUsername().equalsIgnoreCase(user) && empleado.getPassword().equalsIgnoreCase(pass)){
-            return true;
+        try{
+            Empleado empleado = db.get(Empleado.class, user);
+            if(empleado.getUsername().equalsIgnoreCase(user) && empleado.getPassword().equalsIgnoreCase(pass)){
+                return true;
+            }        
+        } catch(org.ektorp.DocumentNotFoundException e){
+            System.out.println(e);
+            //throw new Excepcion(Excepcion.loginIncorrecto);
         }
         return false;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
