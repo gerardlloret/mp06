@@ -1,9 +1,11 @@
 package vista;
 
 import excepcion.Excepcion;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import modelo.Empleado;
+import modelo.Incidencia;
 import persistencia.DAO;
 
 public class Main {
@@ -40,7 +42,8 @@ public class Main {
                                             break;
                                         case 5:
                                             break;
-                                        case 6:                                        
+                                        case 6: 
+                                            crearIncidencia();
                                             break;
                                         case 7:
                                             break;
@@ -141,5 +144,19 @@ public class Main {
         
     }
     
+    public static void crearIncidencia(){
+
+        Date fecha = new Date();
+        String tipo = InputAsker.askString("Tipo: ");
+        
+        
+        Incidencia incidencia = new Incidencia();
+        incidencia.setFecha(fecha);
+
+        
+      /*@JsonProperty("_tipo") private Type tipo;
+        @JsonProperty("_origen") private Empleado origen;
+        @JsonProperty("_destino") private Empleado destino;*/
+    }
         
 }
