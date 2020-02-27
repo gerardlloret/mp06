@@ -29,9 +29,10 @@ public class Main {
                                     opcion2 = InputAsker.askInt("Escoge una opcion");
                                     switch(opcion2){
                                         case 1:
-                                            modificarEmpleado();
+                                            crearEmpleado();
                                             break;
                                         case 2:
+                                            modificarEmpleado();
                                             break;
                                         case 3:
                                             break;
@@ -92,6 +93,14 @@ public class Main {
         System.out.println("0. Salir");
     }
     
+    private static void showMenuEmpleado(){
+        System.out.println("1. Username");
+        System.out.println("2. Password");
+        System.out.println("3. Nombre completo");
+        System.out.println("4. telefono");
+    }
+    
+    
     //NO ESTA ACABADA FALTA EL THROW
     public static boolean login() throws Excepcion{
         String nombre = InputAsker.askString("Introduce tu nombre");
@@ -113,10 +122,18 @@ public class Main {
             System.out.println(num + " " + e);
             num++;
         }
-        int posicion = InputAsker.askInt("Introduze el num dela ciudad:",1, empleados.size());
+        int posicion = InputAsker.askInt("Introduze el num del empleado:",1, empleados.size());
         Empleado seleccionado = empleados.get(posicion-1);
         return seleccionado;
     }
+    
+    public static void crearEmpleado() throws Excepcion{
+        String username = InputAsker.askString("Introduce tu nombre");
+        String password = InputAsker.askString("Introduce tu nombre");
+        
+    
+    }
+    
     
     public static void modificarEmpleado() throws Excepcion{
         Empleado empleado = obtenerEmpleado();

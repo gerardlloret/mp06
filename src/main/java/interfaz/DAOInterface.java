@@ -2,6 +2,7 @@
 package interfaz;
 
 import enums.Evento;
+import excepcion.Excepcion;
 import java.util.List;
 import modelo.Empleado;
 import modelo.Incidencia;
@@ -12,7 +13,7 @@ public interface DAOInterface {
     public void insertEmpleado(Empleado e);
 
     // Método para validar el login de un empleado.
-    public boolean loginEmpleado(String user, String pass);
+    public boolean loginEmpleado(String user, String pass) throws Excepcion;
 
     // Método para modificar el perfil de un empleado.
     public void updateEmpleado(Empleado e);

@@ -62,15 +62,14 @@ public class DAO implements DAOInterface {
     }
 
     @Override
-    public boolean loginEmpleado(String user, String pass) {
+    public boolean loginEmpleado(String user, String pass) throws Excepcion {
         try{
             Empleado empleado = db.get(Empleado.class, user);
             if(empleado.getUsername().equalsIgnoreCase(user) && empleado.getPassword().equalsIgnoreCase(pass)){
                 return true;
             }        
         } catch(org.ektorp.DocumentNotFoundException e){
-            System.out.println(e);
-            //throw new Excepcion(Excepcion.loginIncorrecto);
+            throw new Excepcion(Excepcion.loginIncorrecto);
         }
         return false;
     }
