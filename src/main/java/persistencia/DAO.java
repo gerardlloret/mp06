@@ -47,39 +47,56 @@ public class DAO implements DAOInterface {
             e.setPassword("pass");
             e.setNombreCompleto("glloret");
             e.setTelefono("1223");
-            e.setId("gerard");
-            //DesignDocument dd = new DesignDocument("light");  
-            
+            e.setId("gerard");            
             db.create(e);*/
         } catch (MalformedURLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }  
-
+    //Metodo que recibe un empleado y lo inserta en la base de datos
     @Override
     public void insertEmpleado(Empleado e) {
         db.create(e);
     }
-
+    //Metodo que comprueba si las credenciales al logearse son correctas
     @Override
-    public boolean loginEmpleado(String user, String pass) throws Excepcion {
+    public boolean loginEmpleado(String user, String pass) {
         try{
             Empleado empleado = db.get(Empleado.class, user);
             if(empleado.getUsername().equalsIgnoreCase(user) && empleado.getPassword().equalsIgnoreCase(pass)){
                 return true;
             }        
         } catch(org.ektorp.DocumentNotFoundException e){
-            throw new Excepcion(Excepcion.loginIncorrecto);
+            return false;
         }
         return false;
     }
-    
+    //Metodo que pasado el nombre de un empleado, comprueba si este existe
+    public Empleado getEmpleado(String user) throws Excepcion{
+        try{
+            Empleado empleado = db.get(Empleado.class, user);
+            return empleado;
+        }catch(org.ektorp.DocumentNotFoundException e){
+           throw new Excepcion(Excepcion.empleadoNoExiste);
+        }
+    }
+    //FALTA COMPROBAR QUE PASA SI NO HAY NINGUN EMPLEADO
     public List<Empleado> getAllEmpleados() {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
         List<Empleado> empleados = db.queryView(q, Empleado.class);
         return empleados;
     }   
-    
+    //Metodo que pasado un nombre, comprueba si un empleado existe
+    public boolean empleadoExiste(String user) {
+        try{
+            Empleado empleado = db.get(Empleado.class, user);
+        } catch(org.ektorp.DocumentNotFoundException e){
+            return false;
+        }    
+        return true;
+    }
+    //FALTA TESTEAR SI FUNCIONA
+    //Metodo que recibe un empleado existente y lo actualiza
     @Override
     public void updateEmpleado(Empleado e) {
         db.update(e);
@@ -102,8 +119,7 @@ public class DAO implements DAOInterface {
 
     @Override
     public void insertIncidencia(Incidencia i) {
-        db.create(i); 
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

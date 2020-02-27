@@ -5,11 +5,11 @@ public class Excepcion extends Exception{
     //Declaramos estas variables para que al momento de lanzar el error sea mucho mas intuitivo
     public static final int loginIncorrecto = 1;
     public static final int noHayEmpleados = 2;
-    /*public static final int dniYaExiste = 3;
-    public static final int matriculaExcede = 4;
-    public static final int claveExcede = 5;
-    public static final int loginIncorrecto = 6;
-    public static final int noHayExpedientes = 7;
+    public static final int empleadoYaExiste = 3;
+    public static final int telefonoTipo = 4;
+    public static final int telefonoLength = 5;
+    public static final int empleadoNoExiste = 6;
+    /*public static final int noHayExpedientes = 7;
     public static final int apellidoExcede = 8;
     public static final int cpExcede = 9;
     public static final int mascotasExcede = 10;
@@ -31,15 +31,15 @@ public class Excepcion extends Exception{
                 return "< El nombre o el password son incorrectos >";
             case 2:
                 return "< No existe ningun empleado >";
-            /*case 3:
-                return "< Este dni ya se ha dado de alta>";
+            case 3:
+                return "< Este empleado ya existe>";
             case 4:
-                return "< La matricula no puede exceder los 6 caracteres >";
+                return "< Un telefono solo debe contener numeros >";
             case 5:
-                return "< La clave no puede exceder los 8 caracteres >";
+                return "< Un telefono tiene que tener 9 numeros >";
             case 6:
-                return "< dni o contraseña incorrecta >";
-            case 7:
+                return "< Este empleado no existe >";
+            /*case 7:
                 return "< No se ha creado ningun expediente >";
             case 8:
                 return "< El apellido excede los caracteres permitidos >";
