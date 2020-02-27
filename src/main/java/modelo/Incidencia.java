@@ -16,16 +16,19 @@ public class Incidencia {
 
     @JsonProperty("_id") private String identity;
     @JsonProperty("_rev") private String version;
-    @JsonProperty("_fecha") private Date fecha;
-    @JsonProperty("_tipo") private Type tipo;
-    @JsonProperty("_origen") private Empleado origen;
-    @JsonProperty("_destino") private Empleado destino;
+    private Date fecha;
+    private Type tipo;
+    private Empleado origen;
+    private Empleado destino;
 
-    public Incidencia(Date fecha, Type tipo, Empleado origen, Empleado destino) {
+    /*public Incidencia(Date fecha, Type tipo, Empleado origen, Empleado destino) {
         this.fecha = fecha;
         this.tipo = tipo;
         this.origen = origen;
         this.destino = destino;
+    }*/
+
+    public Incidencia() {       
     }
     
     public Date getFecha() {
