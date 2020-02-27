@@ -1,6 +1,9 @@
 package vista;
 
 import excepcion.Excepcion;
+import java.util.ArrayList;
+import java.util.List;
+import modelo.Empleado;
 import persistencia.DAO;
 
 public class Main {
@@ -20,13 +23,13 @@ public class Main {
                 try{
                     switch(opcion){
                         case 1:
-                            if(login()){                          
-                                opcion2 = InputAsker.askInt("Escoge una opcion");
-                                showMenu();
-                                do{
+                            if(login()){                                                        
+                                do{                                  
+                                    showMenu();
+                                    opcion2 = InputAsker.askInt("Escoge una opcion");
                                     switch(opcion2){
                                         case 1:
-
+                                            modificarEmpleado();
                                             break;
                                         case 2:
                                             break;
@@ -89,7 +92,7 @@ public class Main {
         System.out.println("0. Salir");
     }
     
-    //NO ESTA ACABADA
+    //NO ESTA ACABADA FALTA EL THROW
     public static boolean login() throws Excepcion{
         String nombre = InputAsker.askString("Introduce tu nombre");
         String password = InputAsker.askString("Introduce tu password");
@@ -97,6 +100,13 @@ public class Main {
             return true;
         }
         return false;
+    }
+    
+    public static void modificarEmpleado(){
+        List<Empleado> empleados = gestor.getAllEmpleados(); 
+        for (Empleado e : empleados){
+            System.out.println(e);
+        }
     }
         
 }

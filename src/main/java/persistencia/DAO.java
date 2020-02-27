@@ -21,6 +21,10 @@ import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbConnector;  
 import org.ektorp.impl.StdCouchDbInstance;  
 import org.ektorp.support.DesignDocument;  
+import org.ektorp.ViewQuery;
+import org.ektorp.*;
+import org.ektorp.support.*;
+
 
 public class DAO implements DAOInterface {
     
@@ -70,10 +74,16 @@ public class DAO implements DAOInterface {
         }
         return false;
     }
-
+    
+    public List<Empleado> getAllEmpleados() {
+        ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
+        List<Empleado> empleados = db.queryView(q, Empleado.class);
+        return empleados;
+    }   
+    
     @Override
     public void updateEmpleado(Empleado e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        db.update(e);
     }
 
     @Override
