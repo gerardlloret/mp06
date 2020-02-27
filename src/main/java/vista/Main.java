@@ -99,10 +99,9 @@ public class Main {
     }
     //Metodo para mostrar los atributos de empleado
     private static void showMenuEmpleado(){
-        System.out.println("1. Username");
-        System.out.println("2. Password");
-        System.out.println("3. Nombre completo");
-        System.out.println("4. telefono");
+        System.out.println("1. Password");
+        System.out.println("2. Nombre completo");
+        System.out.println("3. telefono");
     }
     //Metodo para el login, throwea una excepcion si el usuario no existe
     public static boolean login() throws Excepcion{
@@ -177,10 +176,14 @@ public class Main {
                     break;
                 case 3:
                     break;
-                case 4:
-                    break;
             }
         }while (opcion != 0);
+    }
+    
+    public static void modificarPassword(Empleado empleado){
+        String password = InputAsker.askString("Introduce la nueva contraseña");
+        empleado.setPassword(password);
+        gestor.updateEmpleado(empleado);
     }
     
         
