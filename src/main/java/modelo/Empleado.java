@@ -14,9 +14,8 @@ public class Empleado {
     private String nombreCompleto;
     private String telefono;
 
-    /*public Empleado(String id, String rev, String username, String password, String nombreCompleto, String telefono) {
+    /*public Empleado(String id, String username, String password, String nombreCompleto, String telefono) {
         this.id = id;
-        this.rev = rev;
         this.username = username;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
@@ -29,6 +28,14 @@ public class Empleado {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public String getRev() {
+        return rev;
+    }
+
+    public void setRev(String rev) {
+        this.rev = rev;
     }
     
     public String getUsername() {

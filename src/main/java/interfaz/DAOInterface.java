@@ -13,7 +13,7 @@ public interface DAOInterface {
     public void insertEmpleado(Empleado e);
 
     // Método para validar el login de un empleado.
-    public boolean loginEmpleado(String user, String pass) throws Excepcion;
+    public boolean loginEmpleado(String user, String pass);
 
     // Método para modificar el perfil de un empleado.
     public void updateEmpleado(Empleado e);
