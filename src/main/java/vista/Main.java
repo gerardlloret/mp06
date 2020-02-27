@@ -179,7 +179,7 @@ public class Main {
         do {
             switch (opcion) {
                 case 1:
-
+                    modificarPassword(empleado);
                     break;
                 case 2:
                     break;
@@ -192,6 +192,18 @@ public class Main {
     public static void modificarPassword(Empleado empleado) {
         String password = InputAsker.askString("Introduce la nueva contraseña");
         empleado.setPassword(password);
+        gestor.updateEmpleado(empleado);
+    }
+    
+    public static void modificarNombreCompleto(Empleado empleado) {
+        String nombreCompleto = InputAsker.askString("Introduce un nuevo nombre completo");
+        empleado.setPassword(nombreCompleto);
+        gestor.updateEmpleado(empleado);
+    }
+    
+    public static void modificarTelefono(Empleado empleado) throws Excepcion{
+        String telefono = InputAsker.askString("Introduce un nuevo telefono");
+        empleado.setTelefono(telefono);
         gestor.updateEmpleado(empleado);
     }
     
