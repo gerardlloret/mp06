@@ -102,11 +102,27 @@ public class Main {
         return false;
     }
     
-    public static void modificarEmpleado(){
-        List<Empleado> empleados = gestor.getAllEmpleados(); 
-        for (Empleado e : empleados){
-            System.out.println(e);
+    public static Empleado obtenerEmpleado() throws Excepcion{
+        List<Empleado> empleados = gestor.getAllEmpleados();
+        if(empleados.isEmpty()){
+            throw new Excepcion(Excepcion.noHayEmpleados);
         }
+        System.out.println("Estos son las empleados disponibles:");
+        int num = 1;
+        for (Empleado e : empleados){
+            System.out.println(num + " " + e);
+            num++;
+        }
+        int posicion = InputAsker.askInt("Introduze el num dela ciudad:",1, empleados.size());
+        Empleado seleccionado = empleados.get(posicion-1);
+        return seleccionado;
     }
+    
+    public static void modificarEmpleado() throws Excepcion{
+        Empleado empleado = obtenerEmpleado();
+        
+        
+    }
+    
         
 }
