@@ -101,7 +101,9 @@ public class Excepcion extends Exception{
             case 29:
                 return "<  >";
             case 30:
-                return "<  >";/*
+                return "<  >";
+                
+            */
                 
         }
         return super.getMessage(); 

@@ -43,6 +43,7 @@ public class Main {
                                         case 4:
                                             break;
                                         case 5:
+                                            verTodasLasIncidencias();
                                             break;
                                         case 6:
                                             crearIncidencia();
@@ -218,6 +219,19 @@ public class Main {
         /*@JsonProperty("_tipo") private Type tipo;
         @JsonProperty("_origen") private Empleado origen;
         @JsonProperty("_destino") private Empleado destino;*/
+    }
+     
+    //FALTA COMPROBAR
+    //Funcion para ver todas las incidencias.
+    public static void verTodasLasIncidencias() throws Excepcion{
+        List<Incidencia> incidencias = new ArrayList<>();
+        incidencias = gestor.getAllIncidencia();
+        if(incidencias.isEmpty()){
+           throw new Excepcion(Excepcion.noHayIncidencia); 
+        }
+        for(int i=0; i<incidencias.size(); i++){
+            System.out.println((i+1) + " - " + incidencias.get(i).toString());
+        }
     }
 
 }
