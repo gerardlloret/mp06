@@ -97,6 +97,7 @@ public class DAO implements DAOInterface {
     public void updateEmpleado(Empleado e) {
         db.update(e);
     }
+    
 
     @Override
     public void removeEmpleado(Empleado e) {
