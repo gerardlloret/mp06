@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package persistencia;
 
 import enums.Evento;
@@ -111,11 +107,42 @@ public class DAO implements DAOInterface {
     public Incidencia getIncidenciaById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    //FALTA COMPROBAR
+    //Metodo que pasa la id de una incidencia y si existe la muestra.
+    public Incidencia selectIncidenciaById(int id) throws Excepcion{
+        try{
+            //Incidencia incidencia = db.get(Incidencia.class, id);
+            //return incidencia;
+        }catch(org.ektorp.DocumentNotFoundException e){
+           throw new Excepcion(Excepcion.empleadoNoExiste);
+        }
+        return null;
+    } 
+    
+    //FALTA COMPROBAR
+    //Metodo que comprueba si una incidencia existe.
+    public boolean IncidenciaExiste(int id) {
+        try{
+            //Incidencia incidencia = db.get(Incidencia.class, id);
+        } catch(org.ektorp.DocumentNotFoundException e){
+            return false;
+        }    
+        return true;
+    }
 
     @Override
     public List<Incidencia> selectAllIncidencias() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    //FALTA COMPROBAR
+    //Metodo para mostrar todas las incidencias.
+    public List<Incidencia> getAllIncidencia() {
+        ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
+        List<Incidencia> incidencias = db.queryView(q, Incidencia.class);
+        return incidencias;
+    }   
 
     @Override
     public void insertIncidencia(Incidencia i) {

@@ -62,6 +62,11 @@ public class Incidencia {
     public void setDestino(Empleado destino) {
         this.destino = destino;
     }
+
+    @Override
+    public String toString() {
+        return "Incidencia{" + "identity=" + identity + ", version=" + version + ", fecha=" + fecha + ", tipo=" + tipo + ", origen=" + origen + ", destino=" + destino + '}';
+    }
     
     
     
