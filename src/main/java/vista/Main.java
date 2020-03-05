@@ -1,5 +1,7 @@
 package vista;
 
+import enums.Type;
+import static enums.Type.getType;
 import excepcion.Excepcion;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,6 +50,7 @@ public class Main {
                                             crearIncidencia();
                                             break;
                                         case 7:
+                                            mostrarIncidenciasPorUsuario();
                                             break;
                                         case 8:
                                             break;
@@ -195,17 +198,31 @@ public class Main {
         gestor.updateEmpleado(empleado);
     }
     
-     public static void crearIncidencia() {
-
+    //Metodo que permite crear una incidencia.
+    public static void crearIncidencia() throws Excepcion {
         Date fecha = new Date();
-        String tipo = InputAsker.askString("Tipo: ");
-
+        String nombre = InputAsker.askString("Nombre de la incidencia: ");
+        Empleado e = gestor.getEmpleado(InputAsker.askString("Destino: "));
+        Type tipo = getType(InputAsker.askString("Tipo de incidencia: "));
+        String descripcion = InputAsker.askString("Descripcion: ");
         Incidencia incidencia = new Incidencia();
+        incidencia.setNombre(nombre);
         incidencia.setFecha(fecha);
+        incidencia.setDescripcion(descripcion);
+        incidencia.setTipo(tipo);
+        incidencia.setOrigen(empleadoAcual);
+        incidencia.setDestino(e);    
+        gestor.insertIncidencia(incidencia);
+        System.out.println("Incidencia creada correctamente");
+    }
+    
+    public static void mostrarIncidenciasPorUsuario(){
 
-        /*@JsonProperty("_tipo") private Type tipo;
-        @JsonProperty("_origen") private Empleado origen;
-        @JsonProperty("_destino") private Empleado destino;*/
+        /*List<Incidencia> incidencias = gestor.getAllIncidencias();
+        if (incidencias.isEmpty()) {
+            throw new Excepcion(Excepcion.noHayIncidencias);
+        }*/
+        
     }
 
 }

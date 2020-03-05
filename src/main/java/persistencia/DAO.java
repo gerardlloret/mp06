@@ -119,7 +119,7 @@ public class DAO implements DAOInterface {
 
     @Override
     public void insertIncidencia(Incidencia i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        db.create(i);
     }
 
     @Override

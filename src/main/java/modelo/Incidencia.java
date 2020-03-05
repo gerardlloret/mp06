@@ -16,10 +16,28 @@ public class Incidencia {
 
     @JsonProperty("_id") private String identity;
     @JsonProperty("_rev") private String version;
+    private String nombre;
     private Date fecha;
     private Type tipo;
     private Empleado origen;
     private Empleado destino;
+    private String descripcion;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     /*public Incidencia(Date fecha, Type tipo, Empleado origen, Empleado destino) {
         this.fecha = fecha;

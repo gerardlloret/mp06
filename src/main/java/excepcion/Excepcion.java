@@ -9,6 +9,7 @@ public class Excepcion extends Exception{
     public static final int telefonoTipo = 4;
     public static final int telefonoLength = 5;
     public static final int empleadoNoExiste = 6;
+    public static final int tipoIncorrecto = 31;
     /*public static final int noHayExpedientes = 7;
     public static final int apellidoExcede = 8;
     public static final int cpExcede = 9;
@@ -39,6 +40,8 @@ public class Excepcion extends Exception{
                 return "< Un telefono tiene que tener 9 numeros >";
             case 6:
                 return "< Este empleado no existe >";
+            case 31:
+                return "< Tipo incorrecto >";
             /*case 7:
                 return "< No se ha creado ningun expediente >";
             case 8:
