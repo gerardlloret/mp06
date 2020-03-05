@@ -55,8 +55,6 @@ public class Excepcion extends Exception{
                 return "< Un telefono tiene que tener 9 numeros >";
             case 6:
                 return "< Este empleado no existe >";
-            case 31:
-                return "< Tipo incorrecto >";
             /*case 7:
                 return "< No se ha creado ningun expediente >";
             case 8:
@@ -107,7 +105,8 @@ public class Excepcion extends Exception{
                 return "<  >";
                 
             */
-                
+            case 31:
+                return "< Tipo incorrecto >";     
         }
         return super.getMessage(); 
     }            
