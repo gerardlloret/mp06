@@ -1,7 +1,5 @@
 package vista;
 
-import enums.Type;
-import static enums.Type.getType;
 import excepcion.Excepcion;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,12 +43,12 @@ public class Main {
                                         case 4:
                                             break;
                                         case 5:
+                                            verTodasLasIncidencias();
                                             break;
                                         case 6:
                                             crearIncidencia();
                                             break;
                                         case 7:
-                                            mostrarIncidenciasPorUsuario();
                                             break;
                                         case 8:
                                             break;
@@ -182,7 +180,7 @@ public class Main {
         do {
             switch (opcion) {
                 case 1:
-
+                    modificarPassword(empleado);
                     break;
                 case 2:
                     break;
@@ -198,32 +196,44 @@ public class Main {
         gestor.updateEmpleado(empleado);
     }
     
-    //Metodo que permite crear una incidencia.
-    public static void crearIncidencia() throws Excepcion {
-        Date fecha = new Date();
-        String nombre = InputAsker.askString("Nombre de la incidencia: ");
-        Empleado e = gestor.getEmpleado(InputAsker.askString("Destino: "));
-        Type tipo = getType(InputAsker.askString("Tipo de incidencia: "));
-        String descripcion = InputAsker.askString("Descripcion: ");
-        Incidencia incidencia = new Incidencia();
-        incidencia.setNombre(nombre);
-        incidencia.setFecha(fecha);
-        incidencia.setDescripcion(descripcion);
-        incidencia.setTipo(tipo);
-        incidencia.setOrigen(empleadoAcual);
-        incidencia.setDestino(e);    
-        gestor.insertIncidencia(incidencia);
-        System.out.println("Incidencia creada correctamente");
+    public static void modificarNombreCompleto(Empleado empleado) {
+        String nombreCompleto = InputAsker.askString("Introduce un nuevo nombre completo");
+        empleado.setPassword(nombreCompleto);
+        gestor.updateEmpleado(empleado);
     }
     
-    public static void mostrarIncidenciasPorUsuario(){
-
-        /*List<Incidencia> incidencias = gestor.getAllIncidencias();
-        if (incidencias.isEmpty()) {
-            throw new Excepcion(Excepcion.noHayIncidencias);
-        }*/
-        
+    public static void modificarTelefono(Empleado empleado) throws Excepcion{
+        String telefono = InputAsker.askString("Introduce un nuevo telefono");
+        empleado.setTelefono(telefono);
+        gestor.updateEmpleado(empleado);
     }
+    
+     public static void crearIncidencia() {
+
+        Date fecha = new Date();
+        String tipo = InputAsker.askString("Tipo: ");
+
+        Incidencia incidencia = new Incidencia();
+        incidencia.setFecha(fecha);
+
+        /*@JsonProperty("_tipo") private Type tipo;
+        @JsonProperty("_origen") private Empleado origen;
+        @JsonProperty("_destino") private Empleado destino;*/
+    }
+     
+    //FALTA COMPROBAR
+    //Funcion para ver todas las incidencias.
+    public static void verTodasLasIncidencias() throws Excepcion{
+        List<Incidencia> incidencias = new ArrayList<>();
+        incidencias = gestor.getAllIncidencia();
+        if(incidencias.isEmpty()){
+           throw new Excepcion(Excepcion.noHayIncidencia); 
+        }
+        for(int i=0; i<incidencias.size(); i++){
+            System.out.println((i+1) + " - " + incidencias.get(i).toString());
+        }
+    }
+    
 
 }
 
