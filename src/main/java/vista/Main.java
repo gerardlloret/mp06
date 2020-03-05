@@ -180,7 +180,7 @@ public class Main {
         do {
             switch (opcion) {
                 case 1:
-
+                    modificarPassword(empleado);
                     break;
                 case 2:
                     break;
@@ -196,6 +196,18 @@ public class Main {
         gestor.updateEmpleado(empleado);
     }
     
+    public static void modificarNombreCompleto(Empleado empleado) {
+        String nombreCompleto = InputAsker.askString("Introduce un nuevo nombre completo");
+        empleado.setPassword(nombreCompleto);
+        gestor.updateEmpleado(empleado);
+    }
+    
+    public static void modificarTelefono(Empleado empleado) throws Excepcion{
+        String telefono = InputAsker.askString("Introduce un nuevo telefono");
+        empleado.setTelefono(telefono);
+        gestor.updateEmpleado(empleado);
+    }
+    
      public static void crearIncidencia() {
 
         Date fecha = new Date();
@@ -208,7 +220,7 @@ public class Main {
         @JsonProperty("_origen") private Empleado origen;
         @JsonProperty("_destino") private Empleado destino;*/
     }
-    
+     
     //FALTA COMPROBAR
     //Funcion para ver todas las incidencias.
     public static void verTodasLasIncidencias() throws Excepcion{
@@ -221,7 +233,7 @@ public class Main {
             System.out.println((i+1) + " - " + incidencias.get(i).toString());
         }
     }
+ 
     
-
 }
 
