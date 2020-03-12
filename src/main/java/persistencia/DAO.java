@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package persistencia;
 
 import enums.Eventos;
@@ -115,6 +111,7 @@ public class DAO implements DAOInterface {
     public void updateEmpleado(Empleado e) {
         dbEmpleado.update(e);
     }
+    
 
     //Metodo que recibe un empleado existente y lo elimina
     @Override
@@ -129,6 +126,29 @@ public class DAO implements DAOInterface {
         Incidencia incidencia = dbIncidencia.get(Incidencia.class, idString);
         return incidencia;
     }
+    
+    //FALTA COMPROBAR
+    //Metodo que pasa la id de una incidencia y si existe la muestra.
+    public Incidencia selectIncidenciaById(int id) throws Excepcion{
+        try{
+            //Incidencia incidencia = db.get(Incidencia.class, id);
+            //return incidencia;
+        }catch(org.ektorp.DocumentNotFoundException e){
+           throw new Excepcion(Excepcion.empleadoNoExiste);
+        }
+        return null;
+    } 
+    
+    //FALTA COMPROBAR
+    //Metodo que comprueba si una incidencia existe.
+    public boolean IncidenciaExiste(int id) {
+        try{
+            //Incidencia incidencia = db.get(Incidencia.class, id);
+        } catch(org.ektorp.DocumentNotFoundException e){
+            return false;
+        }    
+        return true;
+    }
 
     @Override
     public List<Incidencia> selectAllIncidencias() {
@@ -136,6 +156,14 @@ public class DAO implements DAOInterface {
         List<Incidencia> incidencias = dbIncidencia.queryView(q, Incidencia.class);
         return incidencias;
     }
+    
+    //FALTA COMPROBAR
+    //Metodo para mostrar todas las incidencias.
+    public List<Incidencia> getAllIncidencia() {
+        ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
+        List<Incidencia> incidencias = dbIncidencia.queryView(q, Incidencia.class);
+        return incidencias;
+    }   
 
     @Override
     public void insertIncidencia(Incidencia i) {

@@ -25,6 +25,7 @@ public class Incidencia {
     private String descripcion;
 
 
+
     public Incidencia() {       
     }
     
@@ -75,6 +76,7 @@ public class Incidencia {
     public void setDestino(Empleado destino) {
         this.destino = destino;
     }
+
     
     public String getDescripcion() {
         return descripcion;
