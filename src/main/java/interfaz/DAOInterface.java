@@ -1,11 +1,11 @@
 
 package interfaz;
 
-import enums.Evento;
-import excepcion.Excepcion;
 import java.util.List;
 import modelo.Empleado;
+import modelo.Evento;
 import modelo.Incidencia;
+import modelo.RankingTO;
 
 public interface DAOInterface {
 
@@ -53,8 +53,5 @@ public interface DAOInterface {
 
     // Obtener el ranking de los empleados por cantidad de incidencias
     // urgentes creadas (más incidencias urgentes primero).
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////public List<RankingTO> getRankingEmpleados();////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////
+    public List<RankingTO> getRankingEmpleados();
 }

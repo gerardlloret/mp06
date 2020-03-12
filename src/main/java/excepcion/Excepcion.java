@@ -9,13 +9,13 @@ public class Excepcion extends Exception{
     public static final int telefonoTipo = 4;
     public static final int telefonoLength = 5;
     public static final int empleadoNoExiste = 6;
-    /*public static final int noHayExpedientes = 7;
-    public static final int apellidoExcede = 8;
-    public static final int cpExcede = 9;
-    public static final int mascotasExcede = 10;
-    public static final int telefonoTipo = 11;
-    public static final int telefonoExcede = 12;
-    public static final int cpTipo = 13;
+    public static final int ultimoEmpleado = 7;
+    public static final int excepcionEnumIncidencia = 8;
+    public static final int noHayIncidencias = 9;
+    public static final int incidenciaNoExiste = 10;
+    public static final int excepcionEnumEvento = 11;
+    public static final int noHaIniciadoSesion = 12;
+    /*public static final int cpTipo = 13;
     public static final int ultimoAdmin = 14;
     public static final int matriculaExiste = 15;*/
     
@@ -39,19 +39,19 @@ public class Excepcion extends Exception{
                 return "< Un telefono tiene que tener 9 numeros >";
             case 6:
                 return "< Este empleado no existe >";
-            /*case 7:
-                return "< No se ha creado ningun expediente >";
+            case 7:
+                return "< No puede borrarse el ultimo empleado >";
             case 8:
-                return "< El apellido excede los caracteres permitidos >";
+                return "< Tipo de incidencia incorrecto >";
             case 9:
-                return "< El codigo postal no puede contener mas de 6 numeros >";
+                return "<  No existe ninguna incidencia >";
             case 10:
-                return "< El numero de mascotas tine que ser de 1 a 99 >";
+                return "< Esta incidencia no existe >";
             case 11:
-                return "< Un telefono solo puede contener numeros >";
+                return "< Tipo de evento incorrecto >";
             case 12:
-                return "< El telefono no puede tener menos de 9 o mas de 12 numeros >";
-            case 13:
+                return "< Este empleado no ha iniciado sesion nunca >";
+            /*case 13:
                 return "< El codigo postal solo puede tener numeros >";
             case 14:
                 return "< No puedes borrar el ultimo administrador >";

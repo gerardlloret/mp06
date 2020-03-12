@@ -3,6 +3,7 @@ package modelo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 
 //Las propiedades no pueden ser nulas y no estaran en el json los campos vacios.
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -13,6 +14,7 @@ public class Empleado {
     private String password;
     private String nombreCompleto;
     private String telefono;
+    //private Date inicioSesion;
 
     /*public Empleado(String id, String username, String password, String nombreCompleto, String telefono) {
         this.id = id;
@@ -69,6 +71,14 @@ public class Empleado {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+    
+    /*public Date getDate(){
+        return inicioSesion;
+    }
+    
+    public void setDate(Date date){
+        this.inicioSesion = date;
+    }*/
 
     @Override
     public String toString() {

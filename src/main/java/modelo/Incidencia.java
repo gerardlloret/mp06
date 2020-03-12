@@ -5,30 +5,43 @@
  */
 package modelo;
 
-import enums.Type;
+import enums.Tipos;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import excepcion.Excepcion;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Incidencia {
 
-    @JsonProperty("_id") private String identity;
-    @JsonProperty("_rev") private String version;
+    @JsonProperty("_id") private String id;
+    @JsonProperty("_rev") private String rev;
+    private String nombre;
     private Date fecha;
-    private Type tipo;
+    private Tipos tipo;
     private Empleado origen;
     private Empleado destino;
+    private String descripcion;
 
-    /*public Incidencia(Date fecha, Type tipo, Empleado origen, Empleado destino) {
-        this.fecha = fecha;
-        this.tipo = tipo;
-        this.origen = origen;
-        this.destino = destino;
-    }*/
 
     public Incidencia() {       
+    }
+    
+    public String getId(){
+        return id;
+    }
+    
+    public void setId(String id){
+        this.id = id;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     public Date getFecha() {
@@ -39,12 +52,12 @@ public class Incidencia {
         this.fecha = fecha;
     }
 
-    public Type getTipo() {
+    public Tipos getTipo() {
         return tipo;
     }
 
-    public void setTipo(Type tipo) {
-        this.tipo = tipo;
+    public void setTipo(String tipo) throws Excepcion{
+        this.tipo = Tipos.getType(tipo);
     }
 
     public Empleado getOrigen() {
@@ -63,6 +76,18 @@ public class Incidencia {
         this.destino = destino;
     }
     
-    
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Incidencia{ id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", tipo=" + tipo + ", origen=" + origen + ", destino=" + destino + ", descripcion=" + descripcion + '}';
+    }
+      
     
 }
