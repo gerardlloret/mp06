@@ -38,7 +38,7 @@ public class DAO implements DAOInterface {
         //192.168.21.105
         HttpClient httpClient;
         try {
-            httpClient = new StdHttpClient.Builder().url("http://192.168.21.105:5984").username("root").password("root").build();
+            httpClient = new StdHttpClient.Builder().url("http://localhost:5984").username("root").password("root").build();
             CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);  
             //--------------- Creating database----------------------------//  
             //CouchDbConnector db = new StdCouchDbConnector("javatpoint", dbInstance);             
@@ -53,7 +53,7 @@ public class DAO implements DAOInterface {
             e.setNombreCompleto("glloret");
             e.setTelefono("1223456789");
             e.setId("gerard");        
-            dbEmpleado.create(e);      */    
+            dbEmpleado.create(e);*/  
         } catch (MalformedURLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
@@ -89,7 +89,7 @@ public class DAO implements DAOInterface {
         }
     }
     
-    //FALTA COMPROBAR QUE PASA SI NO HAY NINGUN EMPLEADO
+    //Metodo que devuelve todos los empleados
     public List<Empleado> getAllEmpleados() {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
         List<Empleado> empleados = dbEmpleado.queryView(q, Empleado.class);
@@ -127,29 +127,7 @@ public class DAO implements DAOInterface {
         return incidencia;
     }
     
-    //FALTA COMPROBAR
-    //Metodo que pasa la id de una incidencia y si existe la muestra.
-    public Incidencia selectIncidenciaById(int id) throws Excepcion{
-        try{
-            //Incidencia incidencia = db.get(Incidencia.class, id);
-            //return incidencia;
-        }catch(org.ektorp.DocumentNotFoundException e){
-           throw new Excepcion(Excepcion.empleadoNoExiste);
-        }
-        return null;
-    } 
-    
-    //FALTA COMPROBAR
-    //Metodo que comprueba si una incidencia existe.
-    public boolean IncidenciaExiste(int id) {
-        try{
-            //Incidencia incidencia = db.get(Incidencia.class, id);
-        } catch(org.ektorp.DocumentNotFoundException e){
-            return false;
-        }    
-        return true;
-    }
-
+    //Metodo que devuelve todas las incidencias
     @Override
     public List<Incidencia> selectAllIncidencias() {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
@@ -157,7 +135,6 @@ public class DAO implements DAOInterface {
         return incidencias;
     }
     
-    //FALTA COMPROBAR
     //Metodo para mostrar todas las incidencias.
     public List<Incidencia> getAllIncidencia() {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
@@ -165,6 +142,7 @@ public class DAO implements DAOInterface {
         return incidencias;
     }   
 
+    //Metodo que recibe una incidencia y la inserta en la base de datos
     @Override
     public void insertIncidencia(Incidencia i) {
         dbIncidencia.create(i);
@@ -180,6 +158,7 @@ public class DAO implements DAOInterface {
         return true;
     }
 
+    //Metodo que pasado un empleado devuelve todas las incidencias con ese empleado como destinatario
     @Override
     public List<Incidencia> getIncidenciaByDestino(Empleado e) {
         List<Incidencia> incidenciasByDestino = new ArrayList<>();
@@ -191,6 +170,7 @@ public class DAO implements DAOInterface {
         return incidenciasByDestino;
     }
 
+    //Metodo que pasado un empleado devuelve todas las incidencias con ese empleado como origen
     @Override
     public List<Incidencia> getIncidenciaByOrigen(Empleado e) {
         List<Incidencia> incidenciasByOrigen = new ArrayList<>();
@@ -202,11 +182,13 @@ public class DAO implements DAOInterface {
         return incidenciasByOrigen;
     }
 
+    //Metodo que pasado un evento lo inserta en la base de datos
     @Override
     public void insertarEvento(Evento e) {
         dbEvento.create(e);
     }
 
+    //Metodo que pasado un empleado devuelve el ultimo evento de inicio de sesion
     @Override
     public Evento getUltimoInicioSesion(Empleado e) {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
@@ -225,6 +207,8 @@ public class DAO implements DAOInterface {
         return seleccionado;
     }
     
+    //Metodo que devuelve una lista con el nombre de los empleados y el numero de incidencias urgentes que han creado
+    //Ordenados de forma ascendente
     @Override
     public List<RankingTO> getRankingEmpleados(){
         boolean esta = false;
@@ -241,11 +225,10 @@ public class DAO implements DAOInterface {
                     }
                 }
                 if(!esta){
-                    //usuario.setNombre(i.getOrigen().getUsername());
                     usuario.setNumUrgente(1);
                     rankingTO.add(usuario);
                 }
-                 esta = false;
+                esta = false;
             }
         }
         Collections.sort(rankingTO);

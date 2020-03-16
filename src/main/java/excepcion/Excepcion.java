@@ -15,24 +15,7 @@ public class Excepcion extends Exception{
     public static final int incidenciaNoExiste = 10;
     public static final int excepcionEnumEvento = 11;
     public static final int noHaIniciadoSesion = 12;
-    /*public static final int cpTipo = 13;
-    public static final int ultimoAdmin = 14;
-    public static final int matriculaExiste = 15;*/
-    public static final int noHayIncidencia = 16;
-    /*public static final int apellidoExcede = 17;
-    public static final int cpExcede = 18;
-    public static final int mascotasExcede = 19;
-    public static final int telefonoTipo = 20;
-    public static final int telefonoExcede = 21;
-    public static final int cpTipo = 22;
-    public static final int ultimoAdmin = 23;
-    public static final int matriculaExiste = 24;
-    public static final int noHayExpedientes = 25;
-    public static final int apellidoExcede = 26;
-    public static final int cpExcede = 27;
-    public static final int mascotasExcede = 28;
-    public static final int telefonoTipo = 29;
-    public static final int telefonoExcede = 30;*/
+    public static final int ningunaIncidenciaUrgente = 13;
     
     public Excepcion(int error) {
         super();
@@ -66,46 +49,8 @@ public class Excepcion extends Exception{
                 return "< Tipo de evento incorrecto >";
             case 12:
                 return "< Este empleado no ha iniciado sesion nunca >";
-            /*case 13:
-                return "< El codigo postal solo puede tener numeros >";
-            case 14:
-                return "< No puedes borrar el ultimo administrador >";
-            case 15:
-                return "< Esta matricula ya existe >";*/
-            case 16:
-                return "< No existe ninguna incidencia. >";
-            /*case 17:
-                return "<  >";
-            case 18:
-                return "<  >";
-            case 19:
-                return "<  >";
-            case 20:
-                return "<  >";
-            case 21:
-                return "<  >";
-            case 22:
-                return "<  >";
-            case 23:
-                return "<  >";
-            case 24:
-                return "<  >";
-            case 25:
-                return "<  >";
-            case 26:
-                return "<  >";
-            case 27:
-                return "<  >";
-            case 28:
-                return "<  >";
-            case 29:
-                return "<  >";
-            case 30:
-                return "<  >";
-                
-            */
-            case 31:
-                return "< Tipo incorrecto >";     
+            case 13:
+                return "< Aun no se ha creado ninguna incidencia urgente >";                
         }
         return super.getMessage(); 
     }            

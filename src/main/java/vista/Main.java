@@ -119,6 +119,7 @@ public class Main {
         System.out.println("0. Salir");
     }
     
+    //Metodo para mostrar el tipo de envio de las incidencias
     private static void showMenuOptenerIncidenciaByEmpleado(){
         System.out.println("Tipo de incidencia:");
         System.out.println("1. Mostrar incidencias enviadas");
@@ -134,8 +135,6 @@ public class Main {
             throw new Excepcion(Excepcion.loginIncorrecto);
         }
         empleadoActual = gestor.getEmpleado(nombre);
-        Date date = new Date();
-        //empleadoActual.setDate(date);
         insertarEvento("LOGIN");
         gestor.updateEmpleado(empleadoActual);
         return true;
@@ -158,23 +157,6 @@ public class Main {
         return seleccionado;
     }
     
-    /*
-    //Metodo que muestra todos las incidencias, pide que se el usuario elija una y la devuelve
-    public static Incidencia obtenerIncidencia() throws Excepcion {
-        List<Incidencia> incidencias = gestor.selectAllIncidencias();
-        if (incidencias.isEmpty()) {
-            throw new Excepcion(Excepcion.noHayIncidencias);
-        }
-        System.out.println("Estos son las incidencias disponibles:");
-        int num = 1;
-        for (Incidencia i : incidencias) {
-            System.out.println(num + " " + i);
-            num++;
-        }
-        int posicion = InputAsker.askInt("Introduze el num de la incidencia:", 1, incidencias.size());
-        Incidencia seleccionado = incidencias.get(posicion - 1);
-        return seleccionado;
-    }*/
 
     //Usamos el codigo ASCII para comprobar si la cadena pasada incluye caracteres diferentes a numeros
     public static boolean noEsUnNumero(String num) {
@@ -262,6 +244,8 @@ public class Main {
         System.out.println("Se ha modificado el telefono");
     }
     
+    //FALTA TERMINAR
+    //Metodo para eliminar un empleado, si se elimina un empleado, se eliminan todas las incidencias y eventos relacionados con el
     public static boolean eliminarEmpleado() throws Excepcion{
         List<Empleado> empleados = gestor.getAllEmpleados();
         if (empleados.size()==1) {
@@ -300,8 +284,6 @@ public class Main {
         }
     }
     
-    
-    //PREGUNTAR EN ALGUN MOMENTO SI PUEDES ENVIARTE UNA INCIDENCIA A TI MISMO Y SI ES CORRECTO LOS SETS
     //Metodo que permite crear una incidencia.
     public static void crearIncidencia() throws Excepcion {      
         Incidencia incidencia = new Incidencia();
@@ -331,6 +313,7 @@ public class Main {
         return id;
     }
     
+    //Metodo que pide al usuario que escoja un empleado y muestra sus incidencias o de origen o de destino
     public static void mostrarIncidenciasPorUsuario() throws Excepcion{
         List<Incidencia> incidencias = new ArrayList<>();
         Empleado empleado = obtenerEmpleado();
@@ -359,6 +342,7 @@ public class Main {
         }        
     }
     
+    //Metodo para insertar un evento, recibe el tipo de evento como parametro
     public static void insertarEvento(String e) throws Excepcion{
         Date date = new Date();
         Evento evento = new Evento();
@@ -368,6 +352,7 @@ public class Main {
         gestor.insertarEvento(evento);
     }
     
+    //Metodo que muestra el utimo inicio de un empleado seleccionado por el usuario
     public static void verUltimoInicio() throws Excepcion{
         Empleado empleado = obtenerEmpleado();
         Evento evento = gestor.getUltimoInicioSesion(empleado);
@@ -378,6 +363,7 @@ public class Main {
         System.out.println("El empleado " + empleado.getUsername() + " ha iniciado sesion por ultima vez en: " + date);
     }
     
+    //Metodo para formater las fechas en un formato mas legible
     public static String devolverFechaFormato(){
         String pattern = "dd-MM-yyyy HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -385,8 +371,12 @@ public class Main {
         return date;
     }
     
-    public static void verRanking(){
+    //Metodo para mostrar el ranking
+    public static void verRanking() throws Excepcion{
         List<RankingTO> rankingTO = gestor.getRankingEmpleados();
+        if(rankingTO.isEmpty()){
+            throw new Excepcion(Excepcion.ningunaIncidenciaUrgente);
+        }
         for(RankingTO r : rankingTO){
             System.out.println(r);
         }

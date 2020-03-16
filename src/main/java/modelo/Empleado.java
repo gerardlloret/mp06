@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+//Ektorp no parsea los constructores por lo que tendremos que setear los campos a mano 
 //Las propiedades no pueden ser nulas y no estaran en el json los campos vacios.
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Empleado {
@@ -14,15 +15,6 @@ public class Empleado {
     private String password;
     private String nombreCompleto;
     private String telefono;
-    //private Date inicioSesion;
-
-    /*public Empleado(String id, String username, String password, String nombreCompleto, String telefono) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.nombreCompleto = nombreCompleto;
-        this.telefono = telefono;
-    }*/
     
     public String getId() {
         return id;
@@ -72,14 +64,7 @@ public class Empleado {
         this.telefono = telefono;
     }
     
-    /*public Date getDate(){
-        return inicioSesion;
-    }
-    
-    public void setDate(Date date){
-        this.inicioSesion = date;
-    }*/
-
+    //Sobre escribimos el toString para que nos muestre los datos que nos interesen en vez de la posicion en memoria del objeto
     @Override
     public String toString() {
         return "Empleado{" + "username=" + username + ", password=" + password + ", nombreCompleto=" + nombreCompleto + ", telefono=" + telefono + '}';
