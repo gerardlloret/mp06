@@ -218,7 +218,7 @@ public class Main {
     public static void modificarPassword(Empleado empleado) {
         String password = InputAsker.askString("Introduce la nueva contraseña");
         empleado.setPassword(password);
-        gestor.updateEmpleado(empleado);
+        gestionarLasModificaciones(empleado);
         System.out.println("Se ha modificado la contraseña");
     }
     
@@ -226,7 +226,7 @@ public class Main {
     public static void modificarNombreCompleto(Empleado empleado) {
         String nombreCompleto = InputAsker.askString("Introduce un nuevo nombre completo");
         empleado.setNombreCompleto(nombreCompleto);
-        gestor.updateEmpleado(empleado);
+        gestionarLasModificaciones(empleado);
         System.out.println("Se ha modificado el nombre completo");
     }
     
@@ -240,11 +240,19 @@ public class Main {
             throw new Excepcion(Excepcion.telefonoLength);
         }
         empleado.setTelefono(telefono);     
-        gestor.updateEmpleado(empleado);
+        gestionarLasModificaciones(empleado);
         System.out.println("Se ha modificado el telefono");
     }
     
-    //FALTA TERMINAR
+    public static void gestionarLasModificaciones(Empleado empleado){
+        gestor.updateEmpleado(empleado);
+        actualizarIncidencias(empleado);
+        actualizarEventos(empleado);
+        if(empleadoActual.getId().equalsIgnoreCase(empleado.getId())){
+            empleadoActual = empleado;
+        }
+    }
+    
     //Metodo para eliminar un empleado, si se elimina un empleado, se eliminan todas las incidencias y eventos relacionados con el
     public static boolean eliminarEmpleado() throws Excepcion{
         List<Empleado> empleados = gestor.getAllEmpleados();
@@ -259,6 +267,8 @@ public class Main {
         if(empleado.getUsername().equalsIgnoreCase(empleadoActual.getUsername())){
             return true;
         }
+        borrarEventos(empleado);
+        borrarIncidencias(empleado);
         System.out.println("Se ha eliminado el empleado " + empleado.getUsername());
         return false;
     }
@@ -382,5 +392,47 @@ public class Main {
         }
     }
     
-
+    public static void borrarIncidencias(Empleado e){
+        List<Incidencia> incidenciasDestino = gestor.getIncidenciaByDestino(e);
+        for(Incidencia i : incidenciasDestino){
+            gestor.removeIncidencia(i);
+        }
+        List<Incidencia> incidenciasOrigen = gestor.getIncidenciaByDestino(e);
+        for(Incidencia i : incidenciasOrigen){
+            gestor.removeIncidencia(i);
+        }
+    }
+    
+    public static void actualizarIncidencias(Empleado e){
+        List<Incidencia> incidenciasDestino = gestor.getIncidenciaByDestino(e);
+        for(Incidencia i : incidenciasDestino){
+            i.setDestino(e);
+            gestor.updateIncidencia(i);
+        }
+        List<Incidencia> incidenciasOrigen = gestor.getIncidenciaByDestino(e);
+        for(Incidencia i : incidenciasOrigen){
+            i.setOrigen(e);
+            gestor.updateIncidencia(i);
+        }
+    }
+    
+    public static void borrarEventos(Empleado e){
+        List<Evento> eventos = gestor.getAllEventos();
+        for(Evento ev  : eventos){
+            if(ev.getEmpleado().getId().equalsIgnoreCase(e.getId())){
+                gestor.removeEvento(ev);
+            }
+        }
+    }
+    
+    public static void actualizarEventos(Empleado e){
+        List<Evento> eventos = gestor.getAllEventos();
+        for(Evento ev  : eventos){
+            if(ev.getEmpleado().getId().equalsIgnoreCase(e.getId())){
+                ev.setEmpleado(e);
+                gestor.updateEvento(ev);
+            }
+        }
+    }
+    
 }

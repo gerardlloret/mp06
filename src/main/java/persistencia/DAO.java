@@ -127,7 +127,7 @@ public class DAO implements DAOInterface {
         return incidencia;
     }
     
-    //Metodo que devuelve todas las incidencias
+    //Metodo que retorna todas las incidencias
     @Override
     public List<Incidencia> selectAllIncidencias() {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
@@ -135,7 +135,7 @@ public class DAO implements DAOInterface {
         return incidencias;
     }
     
-    //Metodo para mostrar todas las incidencias.
+    //Metodo que retorna todas las incidencias.
     public List<Incidencia> getAllIncidencia() {
         ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
         List<Incidencia> incidencias = dbIncidencia.queryView(q, Incidencia.class);
@@ -181,6 +181,16 @@ public class DAO implements DAOInterface {
         }
         return incidenciasByOrigen;
     }
+    
+    //Metodo que recibe una incidencia existente y la actualiza
+    public void updateIncidencia(Incidencia i) {
+        dbIncidencia.update(i);
+    }
+    
+    //Metodo que recibe una incidencia existente y lo elimina
+    public void removeIncidencia(Incidencia i) {
+        dbIncidencia.delete(i);
+    }
 
     //Metodo que pasado un evento lo inserta en la base de datos
     @Override
@@ -191,8 +201,7 @@ public class DAO implements DAOInterface {
     //Metodo que pasado un empleado devuelve el ultimo evento de inicio de sesion
     @Override
     public Evento getUltimoInicioSesion(Empleado e) {
-        ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
-        List<Evento> eventos = dbEvento.queryView(q, Evento.class);
+        List<Evento> eventos = getAllEventos();
         Evento seleccionado = new Evento();
         for(Evento ev : eventos){
             if((ev.getEmpleado().getUsername().equalsIgnoreCase(e.getUsername())) && (ev.getEvento().equals(Eventos.LOGIN)) ){
@@ -205,6 +214,23 @@ public class DAO implements DAOInterface {
             }
         }
         return seleccionado;
+    }
+    
+    //Metodo que retorna todos las eventos
+    public List<Evento> getAllEventos() {
+        ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
+        List<Evento> eventos = dbEvento.queryView(q, Evento.class);
+        return eventos;
+    }
+    
+    //Metodo que recibe un evento existente y lo actualiza
+    public void updateEvento(Evento ev) {
+        dbEvento.update(ev);
+    }
+    
+    //Metodo que recibe un evento existente y lo elimina
+    public void removeEvento(Evento ev) {
+        dbEvento.delete(ev);
     }
     
     //Metodo que devuelve una lista con el nombre de los empleados y el numero de incidencias urgentes que han creado
