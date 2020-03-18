@@ -38,7 +38,7 @@ public class DAO implements DAOInterface {
         //192.168.21.105
         HttpClient httpClient;
         try {
-            httpClient = new StdHttpClient.Builder().url("http://localhost:5984").username("root").password("root").build();
+            httpClient = new StdHttpClient.Builder().url("http://127.0.0.1:5984").username("root").password("root").build();
             CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);  
             //--------------- Creating database----------------------------//  
             //CouchDbConnector db = new StdCouchDbConnector("javatpoint", dbInstance);             

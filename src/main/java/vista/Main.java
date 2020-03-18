@@ -19,76 +19,78 @@ public class Main {
     private static Empleado empleadoActual;
 
     public static void main(String[] args) {
-        //try{
-        gestor = new DAO();
-        System.out.println("Establecida la sesión con couchDB");
-        int opcion;
-        int opcion2;
-        do {
-            //Enseñamos el menu y pedimos una opcion
-            showMenuLogin();
-            opcion = InputAsker.askInt("Escoge una opcion");
-            try {
-                switch (opcion) {
-                    case 1:
-                        if (login()) {
-                            do {
-                                showMenu();
-                                opcion2 = InputAsker.askInt("Escoge una opcion");
-                                try {
-                                    switch (opcion2) {
-                                        case 1:
-                                            crearEmpleado();
-                                            break;
-                                        case 2:
-                                            modificarEmpleado();
-                                            break;
-                                        case 3:
-                                            if(eliminarEmpleado()){
-                                                opcion2 = 0;
-                                            }
-                                            break;
-                                        case 4:
-                                            mostrarIncidenciaPorId();
-                                            break;
-                                        case 5:
-                                            mostrarTodasLasIncidencias();
-                                            break;
-                                        case 6:
-                                            crearIncidencia();
-                                            break;
-                                        case 7:
-                                            mostrarIncidenciasPorUsuario();
-                                            break;
-                                        case 8:
-                                            verUltimoInicio();
-                                            break;
-                                        case 9:
-                                            verRanking();
-                                            break;
-                                        default:
-                                            if (opcion2 != 0) {
-                                                System.out.println("El numero " + opcion2 + " no es una opcion valida.");
-                                            }
+        try{
+            gestor = new DAO();
+            System.out.println("Establecida la sesión con couchDB");
+            int opcion;
+            int opcion2;
+            do {
+                //Enseñamos el menu y pedimos una opcion
+                showMenuLogin();
+                opcion = InputAsker.askInt("Escoge una opcion");
+                try {
+                    switch (opcion) {
+                        case 1:
+                            if (login()) {
+                                do {
+                                    showMenu();
+                                    opcion2 = InputAsker.askInt("Escoge una opcion");
+                                    try {
+                                        switch (opcion2) {
+                                            case 1:
+                                                crearEmpleado();
+                                                break;
+                                            case 2:
+                                                modificarEmpleado();
+                                                break;
+                                            case 3:
+                                                if(eliminarEmpleado()){
+                                                    opcion2 = 0;
+                                                }
+                                                break;
+                                            case 4:
+                                                mostrarIncidenciaPorId();
+                                                break;
+                                            case 5:
+                                                mostrarTodasLasIncidencias();
+                                                break;
+                                            case 6:
+                                                crearIncidencia();
+                                                break;
+                                            case 7:
+                                                mostrarIncidenciasPorUsuario();
+                                                break;
+                                            case 8:
+                                                verUltimoInicio();
+                                                break;
+                                            case 9:
+                                                verRanking();
+                                                break;
+                                            default:
+                                                if (opcion2 != 0) {
+                                                    System.out.println("El numero " + opcion2 + " no es una opcion valida.");
+                                                }
+                                        }
+                                    } catch (Excepcion ex) {
+                                        System.out.println(ex.getMessage());
                                     }
-                                } catch (Excepcion ex) {
-                                    System.out.println(ex.getMessage());
-                                }
-                            } while (opcion2 != 0);
-                        }
-                        break;
-                    default:
-                        if (opcion != 0) {
-                            System.out.println("El numero " + opcion + " no es una opcion valida.");
-                        }
+                                } while (opcion2 != 0);
+                            }
+                            break;
+                        default:
+                            if (opcion != 0) {
+                                System.out.println("El numero " + opcion + " no es una opcion valida.");
+                            }
+                    }
+                } catch (Excepcion ex) {
+                    System.out.println(ex.getMessage());
                 }
-            } catch (Excepcion ex) {
-                System.out.println(ex.getMessage());
-            }
-        } while (opcion != 0);
-        //https://helun.github.io/Ektorp/reference_documentation.html
-        //https://www.programcreek.com/java-api-examples/?class=org.ektorp.CouchDbConnector&method=create
-        //} catch () {}
+            } while (opcion != 0);
+            //https://helun.github.io/Ektorp/reference_documentation.html
+            //https://www.programcreek.com/java-api-examples/?class=org.ektorp.CouchDbConnector&method=create
+        } catch (org.ektorp.DbAccessException ex) {
+            System.out.println("No se ha podido conectar con la base de datos");
+        }
     }
 
     //Metodo para mostrar el menu
@@ -392,6 +394,7 @@ public class Main {
         }
     }
     
+    //Metodo que pasado un empleado borra todas sus incidencias, tanto las de origen como las de destino
     public static void borrarIncidencias(Empleado e){
         List<Incidencia> incidenciasDestino = gestor.getIncidenciaByDestino(e);
         for(Incidencia i : incidenciasDestino){
@@ -403,6 +406,7 @@ public class Main {
         }
     }
     
+    //Metodo que pasado un empleado actualiza su informacion en todas las incidencias, tanto las de origen como las de destino
     public static void actualizarIncidencias(Empleado e){
         List<Incidencia> incidenciasDestino = gestor.getIncidenciaByDestino(e);
         for(Incidencia i : incidenciasDestino){
@@ -416,6 +420,7 @@ public class Main {
         }
     }
     
+    //Metodo que pasado un empleado borra todos sus eventos
     public static void borrarEventos(Empleado e){
         List<Evento> eventos = gestor.getAllEventos();
         for(Evento ev  : eventos){
@@ -425,6 +430,7 @@ public class Main {
         }
     }
     
+    //Metodo que pasado un empleado actualiza su informacion en todos sus eventos
     public static void actualizarEventos(Empleado e){
         List<Evento> eventos = gestor.getAllEventos();
         for(Evento ev  : eventos){
