@@ -85,7 +85,7 @@ public class Incidencia {
     //Sobre escribimos el toString para que nos muestre los datos que nos interesen en vez de la posicion en memoria del objeto
     @Override
     public String toString() {
-        return "Incidencia{ id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", tipo=" + tipo + ", origen=" + origen + ", destino=" + destino + ", descripcion=" + descripcion + '}';
+        return "Id = " + id + ", Nombre = " + nombre + ", Fecha = " + fecha + ", Tipo = " + tipo + ", Origen = " + origen.getUsername() + ", Destino = " + destino.getUsername() + ", Descripcion = " + descripcion;
     }
       
     

@@ -35,7 +35,7 @@ public class RankingTO implements Comparable<RankingTO>{
     //Sobre escribimos el toString para que nos muestre los datos que nos interesen en vez de la posicion en memoria del objeto
     @Override
     public String toString() {
-        return "RankingTO{" + "nombre=" + nombre + ", numUrgente=" + numUrgente + '}';
+        return "Usuario = " + nombre + ". Incidencias urgentes = " + numUrgente;
     }
         
 }

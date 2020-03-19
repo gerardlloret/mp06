@@ -233,8 +233,7 @@ public class DAO implements DAOInterface {
         boolean esta = false;
         List<RankingTO> rankingTO = new ArrayList<>();
         for(Incidencia i : selectAllIncidencias()){
-            if(i.getTipo().toString().equals("URGENTE")){
-                System.out.println("NOMBRE = = = = " + i.getOrigen().getUsername());
+            if(i.getTipo().toString().equals("URGENTE")){                
                 RankingTO usuario = new RankingTO();
                 usuario.setNombre(i.getOrigen().getUsername());
                 for(RankingTO r : rankingTO){

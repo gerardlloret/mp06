@@ -66,7 +66,7 @@ public class Empleado {
     //Sobre escribimos el toString para que nos muestre los datos que nos interesen en vez de la posicion en memoria del objeto
     @Override
     public String toString() {
-        return "Empleado{" + "username=" + username + ", password=" + password + ", nombreCompleto=" + nombreCompleto + ", telefono=" + telefono + '}';
+        return "Username = " + username + ", Password = " + password + ", Nombre Completo = " + nombreCompleto + ", Telefono = " + telefono;
     }
     
     

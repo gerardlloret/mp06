@@ -26,14 +26,14 @@ public class Main {
             do {
                 //Enseñamos el menu y pedimos una opcion
                 showMenuLogin();
-                opcion = InputAsker.askInt("Escoge una opcion");
+                opcion = InputAsker.askInt("Escoge una opcion:");
                 try {
                     switch (opcion) {
                         case 1:
                             if (login()) {
                                 do {
                                     showMenu();
-                                    opcion2 = InputAsker.askInt("Escoge una opcion");
+                                    opcion2 = InputAsker.askInt("Escoge una opcion:");
                                     try {
                                         switch (opcion2) {
                                             case 1:
@@ -85,8 +85,6 @@ public class Main {
                     System.out.println(ex.getMessage());
                 }
             } while (opcion != 0);
-            //https://helun.github.io/Ektorp/reference_documentation.html
-            //https://www.programcreek.com/java-api-examples/?class=org.ektorp.CouchDbConnector&method=create
         } catch (org.ektorp.DbAccessException ex) {
             System.out.println("No se ha podido conectar con la base de datos");
         }
@@ -130,8 +128,8 @@ public class Main {
 
     //Metodo para el login, throwea una excepcion si el usuario no existe
     public static boolean login() throws Excepcion {
-        String nombre = InputAsker.askString("Introduce tu nombre");
-        String password = InputAsker.askString("Introduce tu password");
+        String nombre = InputAsker.askString("Introduce tu nombre:");
+        String password = InputAsker.askString("Introduce tu password:");
         if (!gestor.loginEmpleado(nombre, password)) {
             throw new Excepcion(Excepcion.loginIncorrecto);
         }
@@ -150,7 +148,7 @@ public class Main {
         System.out.println("Estos son los empleados disponibles:");
         int num = 1;
         for (Empleado e : empleados) {
-            System.out.println(num + " " + e);
+            System.out.println(num + "- " + e);
             num++;
         }
         int posicion = InputAsker.askInt("Introduze el num del empleado:", 1, empleados.size());
@@ -171,13 +169,13 @@ public class Main {
 
     //Metodo que pide y valida los datos introducidos por el usuario y crea un empleado
     public static void crearEmpleado() throws Excepcion {
-        String username = InputAsker.askString("Introduce tu nombre");
+        String username = InputAsker.askString("Introduce tu nombre:");
         if (gestor.empleadoExiste(username)) {
             throw new Excepcion(Excepcion.empleadoYaExiste);
         }
-        String password = InputAsker.askString("Introduce tu password");
-        String nombreCompleto = InputAsker.askString("Introduce tu nombre completo");
-        String telefono = InputAsker.askString("Introduce tu telefono");
+        String password = InputAsker.askString("Introduce tu password:");
+        String nombreCompleto = InputAsker.askString("Introduce tu nombre completo:");
+        String telefono = InputAsker.askString("Introduce tu telefono:");
         if (noEsUnNumero(telefono)) {
             throw new Excepcion(Excepcion.telefonoTipo);
         }
@@ -217,7 +215,7 @@ public class Main {
     
     //Metodo que pasado un empleado le modifica la contraseña
     public static void modificarPassword(Empleado empleado) {
-        String password = InputAsker.askString("Introduce la nueva contraseña");
+        String password = InputAsker.askString("Introduce la nueva contraseña:");
         empleado.setPassword(password);
         gestionarLasModificaciones(empleado);
         System.out.println("Se ha modificado la contraseña");
@@ -225,7 +223,7 @@ public class Main {
     
     //Metodo que pasado un empleado le modifica el nombre completo
     public static void modificarNombreCompleto(Empleado empleado) {
-        String nombreCompleto = InputAsker.askString("Introduce un nuevo nombre completo");
+        String nombreCompleto = InputAsker.askString("Introduce un nuevo nombre completo:");
         empleado.setNombreCompleto(nombreCompleto);
         gestionarLasModificaciones(empleado);
         System.out.println("Se ha modificado el nombre completo");
@@ -233,7 +231,7 @@ public class Main {
     
     //Metodo que pasado un empleado le modifica el telefono
     public static void modificarTelefono(Empleado empleado) throws Excepcion{
-        String telefono = InputAsker.askString("Introduce un nuevo telefono");
+        String telefono = InputAsker.askString("Introduce un nuevo telefono:");
         if (noEsUnNumero(telefono)) {
             throw new Excepcion(Excepcion.telefonoTipo);
         }
@@ -276,7 +274,7 @@ public class Main {
     
     //Metodo que muestra una incidencia a partir de su id
     public static void mostrarIncidenciaPorId() throws Excepcion{
-        int id = InputAsker.askInt("Introduce el id de lqa incidencia que quieres ver:");
+        int id = InputAsker.askInt("Introduce el id de la incidencia que quieres ver:");
         if(!gestor.incidenciaExiste(Integer.toString(id))){
             throw new Excepcion(Excepcion.incidenciaNoExiste);
         }
@@ -301,13 +299,13 @@ public class Main {
         Date fecha = new Date();
         incidencia.setId(Integer.toString(obtenerIdDisponible()));
         incidencia.setFecha(fecha);       
-        incidencia.setNombre(InputAsker.askString("Introduce el nombre de la incidencia"));               
-        incidencia.setTipo(InputAsker.askString("Introduce el tipo de incidencia (NORMAL/URGENTE)"));
+        incidencia.setNombre(InputAsker.askString("Introduce el nombre de la incidencia:"));               
+        incidencia.setTipo(InputAsker.askString("Introduce el tipo de incidencia (NORMAL/URGENTE):"));
         if(incidencia.getTipo().equals(Tipos.URGENTE)){
             insertarEvento("URGENTE");
         }
-        incidencia.setDescripcion(InputAsker.askString("Introduce una descripcion"));
-        System.out.println("Selecciona el empleado al que se le enviara la incidencia");
+        incidencia.setDescripcion(InputAsker.askString("Introduce una descripcion:"));
+        System.out.println("Selecciona el empleado al que se le enviara la incidencia:");
         Empleado empleado = obtenerEmpleado();
         incidencia.setOrigen(empleadoActual);
         incidencia.setDestino(empleado);    
@@ -370,15 +368,15 @@ public class Main {
         if(evento.getFechaEvento()==null){
             throw new Excepcion(Excepcion.noHaIniciadoSesion);
         }
-        String date = devolverFechaFormato();
+        String date = devolverFechaFormato(evento.getFechaEvento());
         System.out.println("El empleado " + empleado.getUsername() + " ha iniciado sesion por ultima vez en: " + date);
     }
     
     //Metodo para formater las fechas en un formato mas legible
-    public static String devolverFechaFormato(){
+    public static String devolverFechaFormato(Date fecha){
         String pattern = "dd-MM-yyyy HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(new Date());
+        String date = simpleDateFormat.format(fecha);
         return date;
     }
     
