@@ -1,7 +1,6 @@
 package vista;
 
 import enums.Tipos;
-import static enums.Tipos.getType;
 import excepcion.Excepcion;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

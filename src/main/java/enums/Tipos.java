@@ -1,4 +1,5 @@
 package enums;
+
 import excepcion.Excepcion;
 
 public enum Tipos {

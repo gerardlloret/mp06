@@ -1,4 +1,3 @@
-
 package enums;
 
 import excepcion.Excepcion;

@@ -2,7 +2,6 @@
 package persistencia;
 
 import enums.Eventos;
-import enums.Tipos;
 import excepcion.Excepcion;
 import interfaz.DAOInterface;
 import java.net.MalformedURLException;  
@@ -18,13 +17,9 @@ import modelo.RankingTO;
 import org.ektorp.CouchDbConnector;  
 import org.ektorp.CouchDbInstance;  
 import org.ektorp.http.HttpClient;  
-import org.ektorp.http.StdHttpClient;  
-import org.ektorp.impl.StdCouchDbConnector;  
+import org.ektorp.http.StdHttpClient;    
 import org.ektorp.impl.StdCouchDbInstance;  
-import org.ektorp.support.DesignDocument;  
 import org.ektorp.ViewQuery;
-import org.ektorp.*;
-import org.ektorp.support.*;
 
 
 public class DAO implements DAOInterface {
@@ -35,14 +30,12 @@ public class DAO implements DAOInterface {
     
     //Iniciar sesion
     public DAO() {
-        //192.168.21.105
+        //ip de mi maquina en la clase: 192.168.21.105
         HttpClient httpClient;
         try {
             httpClient = new StdHttpClient.Builder().url("http://127.0.0.1:5984").username("root").password("root").build();
             CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);  
-            //--------------- Creating database----------------------------//  
-            //CouchDbConnector db = new StdCouchDbConnector("javatpoint", dbInstance);             
-            //db.createDatabaseIfNotExists();  
+            //--------------- Creating database----------------------------//    
             dbEmpleado = dbInstance.createConnector("Empleados", true);
             dbIncidencia = dbInstance.createConnector("Incidencias", true);
             dbEvento = dbInstance.createConnector("Eventos", true);

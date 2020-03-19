@@ -3,7 +3,6 @@ package modelo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
 
 //Ektorp no parsea los constructores por lo que tendremos que setear los campos a mano 
 //Las propiedades no pueden ser nulas y no estaran en el json los campos vacios.
